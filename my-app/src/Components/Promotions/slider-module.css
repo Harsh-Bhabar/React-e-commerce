@@ -1,0 +1,65 @@
+.slider {
+	width: 100%;
+	height: 80vh;
+	/* background-color: green; */
+}
+
+.left {
+	width: 40%;
+	height: 100%;
+	float: left;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.right {
+	width: 60%;
+	height: 100%;
+	padding-left: 50px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.circleAndImage {
+	position: relative;
+	width: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90%;
+}
+
+.backCircle {
+	width: 75%;
+	height: 75%;
+	border-radius: 50%;
+}
+
+.modelImageDiv {
+	position: absolute;
+}
+
+.modelImage {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.slideBtn {
+	padding: 15px;
+	margin: 10px;
+	background-color: rgba(0, 0, 0, 0);
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.mainText{
+	font-size: 60px;
+	padding: 10px;
+}
+.subText{
+	font-size: 30px;
+	padding: 10px;
+}
+
