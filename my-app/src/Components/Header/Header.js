@@ -2,9 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './header-module.css'
 import SearchBar from '../Forms/SearchBar'
-import { useState } from 'react';
-import Register from '../Forms/Register';
-import Login from '../Forms/Login';
+import { useState } from 'react'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
 
 
 export default function Header( props ) {
@@ -33,7 +32,7 @@ export default function Header( props ) {
 		  <div className='rightHeader'>
 			  <div className='register' onClick={registerModal}>Register</div>
 			  <div className='login' onClick={loginModal} >Login</div>
-			  <div className='cart'>CartIcon</div>
+			  <AiOutlineShoppingCart className='cartIcon' />
 		  </div>
 	</div>
   )

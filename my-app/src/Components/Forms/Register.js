@@ -5,6 +5,15 @@ import { useState } from "react";
 
 export default function Register(props) {
 
+	const [email, setEmail] = useState("");
+	const [userName, setUserName] = useState("");
+	const [passrord, setPassword] = useState("");
+
+	const handleChange = (e) => {
+		console.log(e, e.target.value)
+		e.value = e.target.value;
+	}
+
 	return (
 		<div className="modal">
 
@@ -16,16 +25,16 @@ export default function Register(props) {
 					<RxCross2 className="crossBtn" onClick={props.closeModal} />
 
 					<label className="label">eMail</label>
-					<input className="formInput" />
+					<input type="email" className="formInput" value={email} onChange={handleChange}/>
 
 					<label className="label">userName</label>
-					<input className="formInput" />
+					<input type="text" className="formInput" value={useState} />
 
 					<label className="label">Password</label>
-					<input className="formInput" />
+					<input type="password" className="formInput" value={passrord}/>
 
 					<label className="label">Confirm Password</label>
-					<input className="formInput" />
+					<input type="password" className="formInput" />
 
 					<button className="submitBtn">Register</button>
 					<span className="alreadyAUserText">Already a user? Login...</span>
