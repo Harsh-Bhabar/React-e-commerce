@@ -6,6 +6,8 @@ export default function Register() {
 	return (
 		<div className="register-modal">
 
+		<div className="register-modal-content">
+		
 			<form className="register-form">
 
 				<div className="registerHeading">Register</div>
@@ -24,9 +26,11 @@ export default function Register() {
 				<input className="formInput" />
 
 				<button className="submitBtn">Register</button>
-
+				<span className="alreadyAUserText">Already a user? Login...</span>
 			</form>
 
 		</div>
+		</div>
+
 	);
 }
