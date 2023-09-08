@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './header-module.css'
+import SearchBar from '../Forms/SearchBar'
 
 export default function Header( props ) {
   return (
 	  <div className='header'>
 		  <div className='leftHeader'>
-		  	<div className='searchBar'>
-				search bar
-			</div>
+		  	<SearchBar />
 		  </div>
 		  <div className='middleHeader'>
 		  	<div className='logo'>

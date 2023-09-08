@@ -19,7 +19,7 @@ export default function Slider(props) {
   return (
     <div className="slider-container">
       <div className="slider">
-        <div className="left">
+        <div className="sliderLeft">
           <button className="slideBtn" onClick={prevSlide}>
             &lt;
           </button>
@@ -34,12 +34,12 @@ export default function Slider(props) {
               <img
                 className="modelImage"
                 src={sliderData[currImageIndex].imgUrl}
-                alt={`Image ${currImageIndex}`}
+                alt={`img ${currImageIndex}`}
               />
             </div>
           </div>
         </div>
-        <div className="right">
+        <div className="sliderRight">
           <div className="rightText">
             <div className="mainText">
               {sliderData[currImageIndex].mainText}

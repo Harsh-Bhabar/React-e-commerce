@@ -1,0 +1,40 @@
+.footer {
+	width: 100%;
+	min-height: 75px;
+	background-color: black;
+	color: white;
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.footerLeft {
+	padding: 20px;
+	font-size: 22px;
+}
+
+.footerRight {
+	display: grid;
+	text-align: right;
+}
+
+.followBtns,
+.lastText {
+	padding: 10px 20px 10px 10px;
+}
+
+.icon {
+	margin-right: 20px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+/* Remove margin-right for the last icon */
+.icon:last-child {
+	margin-right: 0;
+}
+
+.lastText{
+	font-size: 12px;
+}
