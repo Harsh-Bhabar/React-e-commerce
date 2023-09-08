@@ -1,35 +1,37 @@
 import React from "react";
 import './forms-module.css'
 import { RxCross2 } from 'react-icons/rx'
+import { useState } from "react";
 
-export default function Register() {
+export default function Register(props) {
+
 	return (
-		<div className="register-modal">
+		<div className="modal">
 
-		<div className="register-modal-content">
-		
-			<form className="register-form">
+			<div className="modal-content">
 
-				<div className="registerHeading">Register</div>
-				<RxCross2 className="registerCrossBtn"/>
+				<form className="form">
 
-				<label className="label">eMail</label>
-				<input className="formInput" />
+					<div className="formHeading">Register</div>
+					<RxCross2 className="crossBtn" onClick={props.closeModal} />
 
-				<label className="label">userName</label>
-				<input className="formInput" />
+					<label className="label">eMail</label>
+					<input className="formInput" />
 
-				<label className="label">Password</label>
-				<input className="formInput" />
+					<label className="label">userName</label>
+					<input className="formInput" />
 
-				<label className="label">Confirm Password</label>
-				<input className="formInput" />
+					<label className="label">Password</label>
+					<input className="formInput" />
 
-				<button className="submitBtn">Register</button>
-				<span className="alreadyAUserText">Already a user? Login...</span>
-			</form>
+					<label className="label">Confirm Password</label>
+					<input className="formInput" />
 
-		</div>
+					<button className="submitBtn">Register</button>
+					<span className="alreadyAUserText">Already a user? Login...</span>
+				</form>
+
+			</div>
 		</div>
 
 	);
