@@ -1,27 +1,8 @@
 import React, { useState } from "react";
 import "./slider-module.css";
+import { sliderData } from "../../data";
 
 export default function Slider(props) {
-  const sliderData = [
-    {
-      imgUrl: "https://i.ibb.co/cXFnLLV/3.png",
-		  backCircleColor: "#327d41",
-      mainText: "Summer Styles",
-      subText: "Lets shop something for this Summer",
-    },
-    {
-      imgUrl: "https://i.ibb.co/DG69bQ4/2.png",
-      backCircleColor: "black",
-      mainText: "Winter Collections",
-      subText: "Lets shop something for this Winter",
-    },
-    {
-      imgUrl: "https://i.ibb.co/cXFnLLV/3.png",
-		backCircleColor: "#32687d",
-      mainText: "Autumn Styles",
-      subText: "Lets shop something for this Autumn",
-    },
-  ];
 
   const [currImageIndex, setCurrImageIndex] = useState(0);
 
