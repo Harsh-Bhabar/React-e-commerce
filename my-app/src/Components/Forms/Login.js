@@ -1,28 +1,53 @@
-import React from 'react'
-import { RxCross2 } from 'react-icons/rx'
+import React, { useState } from 'react';
+import { RxCross2 } from 'react-icons/rx';
+import Toast from '../Toast';
 
-export default function Login(props) {
-  return (
-	  <div className="modal">
+export default function Login({ closeModal, loginUser }) {
+	const [userEmail, setUserEmail] = useState("");
+	const [userPass, setUserPass] = useState("");
+	const [userFound, setUserFound] = useState(false);
+	const [showToast, setShowToast] = useState(false);
 
-		  <div className="modal-content">
+	const submitForm = async (e) => {
+		e.preventDefault();
+		const newUser = {
+			userEmail,
+			userPass,
+		};
+		const validUser = await loginUser(newUser);
 
-			  <form className="form">
+		// Set the userFound state
+		setUserFound(validUser);
 
-				  <div className="formHeading">Sign in</div>
-				  <RxCross2 className="crossBtn" onClick={props.closeModal} />
+		// Show the toast based on the userFound result
+		setShowToast(true);
 
-				  <label className="label">userName / eMail</label>
-				  <input className="formInput" />
+		// Clear input fields
+		setUserEmail("");
+		setUserPass("");
+	};
 
-				  <label className="label">Password</label>
-				  <input className="formInput" />
+	return (
+		<div className="modal">
+			<div className="modal-content">
+				<form className="form" onSubmit={submitForm}>
+					<div className="formHeading">Sign in</div>
+					<RxCross2 className="crossBtn" onClick={closeModal} />
 
-				  <button className="submitBtn">Login</button>
-				  <span className="alreadyAUserText">Not a user? Register...</span>
-			  </form>
+					<label className="label">eMail</label>
+					<input className="formInput" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
 
-		  </div>
-	  </div>
-  )
+					<label className="label">Password</label>
+					<input className="formInput" value={userPass} onChange={(e) => setUserPass(e.target.value)} />
+
+					<button className="submitBtn" type="submit">
+						Login
+					</button>
+					<span className="alreadyAUserText">Not a user? Register...</span>
+				</form>
+
+				{showToast && <Toast success={userFound} />} {/* Conditionally render the Toast component */}
+			</div>
+		</div>
+	);
 }
