@@ -15,45 +15,12 @@ function App() {
   const [users, setUsers] = useState([]);
 
   const modalToOpen = (dataFromModalClick) => {
-
-    setUsers([
-      {
-        id: 1,
-        email: "harsh",
-        userName: "harsh",
-        password: "harsh",
-      },
-      {
-        id: 2,
-        email: "harsh2",
-        userName: "harsh2",
-        password: "harsh2",
-      },
-    ]);
-
     setParentModal(dataFromModalClick);
   };
 
   const closeModal = () => {
     console.log("none");
     setParentModal("none");
-  };
-
-  const registerUser = (email, userName, password) => {
-
-    const newId = users[users.length - 1] ? users[users.length - 1].id + 1 : 1;
-
-    const newUser = {
-      id: newId,
-      email: email,
-      userName: userName,
-      password: password,
-    };
-
-    setUsers([...users, newUser]);
-    setTimeout(() => {
-      console.log(users);
-    }, 1000);
   };
 
   const loginUser = (newUser) => {
@@ -67,7 +34,7 @@ function App() {
   return (
     <Provider store={store}>
       {parentModal === "register" && (
-        <Register closeModal={closeModal} registerUser={registerUser} />
+        <Register closeModal={closeModal} />
       )}
       {parentModal === "login" && (
         <Login closeModal={closeModal} loginUser={loginUser} />

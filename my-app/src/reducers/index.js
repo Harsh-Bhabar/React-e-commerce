@@ -1,8 +1,10 @@
-import {combineReducers } from 'redux' 
-import { loginReducer } from './LoginReducer';
-import { registerReducer } from './RegisterReducer';
+import { combineReducers } from 'redux';
+import loginReducer from './LoginReducer'; 
+import registerReducer from './RegisterReducer'; 
 
-export const rootReducer = combineReducers({
-	loginReducer,
-	registerReducer
+const rootReducer = combineReducers({
+	user: loginReducer, // must give names here as it is used in mapStateToProps
+	users: registerReducer
 });
+
+export default rootReducer;

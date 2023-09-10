@@ -6,7 +6,7 @@ const initialState = {
 	error: null
 }
 
-export const loginReducer = (state = initialState, action) => {
+const loginReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case LOGIN_SUCCESS:
 			return {
@@ -36,3 +36,5 @@ export const loginReducer = (state = initialState, action) => {
 			return state;
 	}
 }
+
+export default loginReducer;
