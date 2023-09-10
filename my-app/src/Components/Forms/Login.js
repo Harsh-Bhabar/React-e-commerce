@@ -8,21 +8,18 @@ export default function Login({ closeModal, loginUser }) {
 	const [userFound, setUserFound] = useState(false);
 	const [showToast, setShowToast] = useState(false);
 
-	const submitForm = async (e) => {
-		e.preventDefault();
+	const handleSubmit = async (e) => {
+		e.preventDefault(); // Prevent the default form submission behavior
+
 		const newUser = {
 			userEmail,
 			userPass,
 		};
 		const validUser = await loginUser(newUser);
 
-		// Set the userFound state
 		setUserFound(validUser);
-
-		// Show the toast based on the userFound result
 		setShowToast(true);
 
-		// Clear input fields
 		setUserEmail("");
 		setUserPass("");
 	};
@@ -30,15 +27,23 @@ export default function Login({ closeModal, loginUser }) {
 	return (
 		<div className="modal">
 			<div className="modal-content">
-				<form className="form" onSubmit={submitForm}>
+				<form className="form" onSubmit={handleSubmit}>
 					<div className="formHeading">Sign in</div>
 					<RxCross2 className="crossBtn" onClick={closeModal} />
 
 					<label className="label">eMail</label>
-					<input className="formInput" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
+					<input
+						className="formInput"
+						value={userEmail}
+						onChange={(e) => setUserEmail(e.target.value)}
+					/>
 
 					<label className="label">Password</label>
-					<input className="formInput" value={userPass} onChange={(e) => setUserPass(e.target.value)} />
+					<input
+						className="formInput"
+						value={userPass}
+						onChange={(e) => setUserPass(e.target.value)}
+					/>
 
 					<button className="submitBtn" type="submit">
 						Login
@@ -46,7 +51,7 @@ export default function Login({ closeModal, loginUser }) {
 					<span className="alreadyAUserText">Not a user? Register...</span>
 				</form>
 
-				{showToast && <Toast success={userFound} />} {/* Conditionally render the Toast component */}
+				{showToast && <Toast success={userFound} />}
 			</div>
 		</div>
 	);

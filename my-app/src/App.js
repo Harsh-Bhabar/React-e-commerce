@@ -7,6 +7,8 @@ import Footer from "./Components/Footer/Footer";
 import { useState } from "react";
 import Register from "./Components/Forms/Register";
 import Login from "./Components/Forms/Login";
+import { Provider } from 'react-redux';
+import store from './store'
 
 function App() {
   const [parentModal, setParentModal] = useState("none");
@@ -63,7 +65,7 @@ function App() {
   };
 
   return (
-    <>
+    <Provider store={store}>
       {parentModal === "register" && (
         <Register closeModal={closeModal} registerUser={registerUser} />
       )}
@@ -75,7 +77,7 @@ function App() {
       <FeaturedCategories />
       <ProductList />
       <Footer footerTitle={"MyApp"} />
-    </>
+    </Provider>
   );
 }
 
