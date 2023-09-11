@@ -1,58 +1,90 @@
-import React, { useState } from 'react';
-import { RxCross2 } from 'react-icons/rx';
-import Toast from '../Toast';
+import React, { useState } from "react";
+import { RxCross2 } from "react-icons/rx";
+import Toast from "../Toast";
+import { connect, useDispatch } from "react-redux";
+import { userLoginSuccess, userLoginFailure } from "../../actions/LoginActions";
+import { Dispatch } from "react";
 
-export default function Login({ closeModal, loginUser }) {
-	const [userEmail, setUserEmail] = useState("");
-	const [userPass, setUserPass] = useState("");
-	const [userFound, setUserFound] = useState(false);
-	const [showToast, setShowToast] = useState(false);
+function Login({ closeModal, users, user }) {
+  const dispatch = useDispatch();
+  const allRegisteredUsers = users.users;
 
-	const handleSubmit = async (e) => {
-		e.preventDefault(); // Prevent the default form submission behavior
+  const [loginFormData, setLoginFormData] = useState({
+    userEmail: "",
+    userPass: "",
+  });
 
-		const newUser = {
-			userEmail,
-			userPass,
-		};
-		const validUser = await loginUser(newUser);
+  const [userFound, setUserFound] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
-		setUserFound(validUser);
-		setShowToast(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
 
-		setUserEmail("");
-		setUserPass("");
-	};
+    const isValidUser = allRegisteredUsers.some(
+      (user) =>
+        user.email === loginFormData.userEmail &&
+        user.password === loginFormData.userPass
+    );
 
-	return (
-		<div className="modal">
-			<div className="modal-content">
-				<form className="form" onSubmit={handleSubmit}>
-					<div className="formHeading">Sign in</div>
-					<RxCross2 className="crossBtn" onClick={closeModal} />
+    if (isValidUser) {
+      dispatch(userLoginSuccess(loginFormData));
+      console.log("user found", user);
+    } else {
+      console.log("user not found", user);
+      dispatch(userLoginFailure(loginFormData));
+    }
+  };
 
-					<label className="label">eMail</label>
-					<input
-						className="formInput"
-						value={userEmail}
-						onChange={(e) => setUserEmail(e.target.value)}
-					/>
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginFormData({
+      ...loginFormData,
+      [name]: value,
+    });
+  };
 
-					<label className="label">Password</label>
-					<input
-						className="formInput"
-						value={userPass}
-						onChange={(e) => setUserPass(e.target.value)}
-					/>
+  return (
+    <div className="modal">
+      <div className="modal-content">
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="formHeading">Sign in</div>
+          <RxCross2 className="crossBtn" onClick={closeModal} />
 
-					<button className="submitBtn" type="submit">
-						Login
-					</button>
-					<span className="alreadyAUserText">Not a user? Register...</span>
-				</form>
+          <label className="label">eMail</label>
+          <input
+            name="userEmail"
+            className="formInput"
+            value={loginFormData.userEmail}
+            onChange={handleChange}
+          />
 
-				{showToast && <Toast success={userFound} />}
-			</div>
-		</div>
-	);
+          <label className="label">Password</label>
+          <input
+            name="userPass"
+            className="formInput"
+            value={loginFormData.userPass}
+            onChange={handleChange}
+          />
+
+          <button className="submitBtn" type="submit">
+            Login
+          </button>
+          <span className="alreadyAUserText">Not a user? Register...</span>
+        </form>
+
+        {showToast && <Toast success={userFound} />}
+      </div>
+    </div>
+  );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    users: state.users, // gives us all the registered users from the store
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, { userLoginSuccess, userLoginFailure })(
+  Login
+);

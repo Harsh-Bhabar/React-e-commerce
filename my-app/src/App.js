@@ -37,7 +37,7 @@ function App() {
         <Register closeModal={closeModal} />
       )}
       {parentModal === "login" && (
-        <Login closeModal={closeModal} loginUser={loginUser} />
+        <Login closeModal={closeModal} />
       )}
       <Header title={"MyApp"} modalToOpen={modalToOpen} />
       <Slider />
